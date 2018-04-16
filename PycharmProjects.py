@@ -62,7 +62,7 @@ def task3():
 
     return render_template('index.html', task4return=task4(), task7return=task7())
 
-@app.route('/task4')
+@app.route('/task4', methods=["POST"])
 def task4():
     cursor.execute("""SELECT 
         Ticket.TicketID,
@@ -73,7 +73,10 @@ def task4():
       GROUP BY Ticket.ticketid, ticketupdate.updatetime
       ORDER BY TicketID ASC;""")
 
-    return cursor.fetchall()
+    task4return = cursor.fetchall()
+    connection.commit()
+
+    return render_template('task4.html', task4return=task4return)
 
 @app.route('/task5', methods=["POST"])
 def task5():
@@ -107,7 +110,7 @@ def task6():
 
     return render_template('task6.html', task6return=task6return, task4return=task4(), task7return=task7())
 
-@app.route('/task7')
+@app.route('/task7', methods=["POST"])
 def task7():
     cursor.execute("""SELECT 
         Ticket.TicketID,
@@ -120,7 +123,10 @@ def task7():
         GROUP BY Ticket.TicketID 
         ORDER BY Ticket.TicketID;""")
 
-    return cursor.fetchall()
+    task7return = cursor.fetchall()
+    connection.commit()
+
+    return render_template('task7.html', task7return=task7return)
 
 @app.route('/task8', methods=["POST"])
 def task8():

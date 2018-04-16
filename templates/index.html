@@ -73,31 +73,14 @@
         </div>
     </form>
 </div>
-<div>
-    <h3>4. Display All Open Tickets</h3>
-</div>
-<div>
-    <table border="2">
-        <thead>
-            <tr>
-                <th>Ticket ID</th>
-                <th>Status</th>
-                <th>Update Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for line in task4return %}
-            <tr>
-                {% for item in line %}
-                <td>
-                    {{item}}
-                </td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+    <form action="/task4" method="post">
+        <div>
+            <h3>4. Display All Open Tickets</h3>
+        </div>
+        <div>
+            <button type="submit">Query</button>
+        </div>
+    </form>
 <div>
     <form action="/task5" method="post">
         <h3>5. Set Status of A Ticket To Closed</h3>
@@ -122,34 +105,16 @@
         </div>
     </form>
 </div>
-
-<div>
-    <h3>7. Display closed tickets, the number of updates, and the time till first and last update</h3>
 </div>
+    <form action="/task7" method="post">
+        <div>
+            <h3>7. Display closed tickets, the number of updates, and the time till first and last update</h3>
+        </div>
+        <div>
+            <button type="submit">Query</button>
+        </div>
+    </form>
 <div>
-    <table border="2">
-        <thead>
-            <tr>
-                <th>Ticket ID</th>
-                <th>Status</th>
-                <th>Number of Updates</th>
-                <th>Time Till First Update</th>
-                <th>Time Till Last Update</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for line in task7return %}
-            <tr>
-                {% for item in line %}
-                <td>
-                    {{item}}
-                </td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
 <div>
     <form action="/task8" method="post">
         <h3>8. Delete Customer</h3>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 7</title>
+</head>
+<body>
+<div>
+    <h2>Here are the closed support tickets and other information:</h2>
+</div>
+<div>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Status</th>
+                <th>Number of Updates</th>
+                <th>Time Till First Update</th>
+                <th>Time Till Last Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for line in task7return %}
+            <tr>
+                {% for item in line %}
+                <td>
+                    {{item}}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    <a href="/">To Homepage</a>
+</div>
+</body>
+</html>
