@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<div>
+    <form action="/task1" method="post">
+        <h3>1. Add New Customer</h3>
+        <div>
+            <label>Customer ID</label>
+            <input type="number" name="CustomerID">
+        </div>
+        <div>
+            <label>Customer Name</label>
+            <input type="text" name="CustomerName">
+        </div>
+        <div>
+            <label>Customer Email</label>
+            <input type="text" name="CustomerEmail">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+<div>
+    <form action="/task2" method="post">
+        <h3>2. Add New Ticket</h3>
+        <div>
+            <label>TicketID</label>
+            <input type="number" name="TicketID">
+        </div>
+        <div>
+            <label>Problem</label>
+            <input type="text" name="Problem">
+        </div>
+        <div>
+            <label>Customer ID</label>
+            <input type="number" name="CustomerID">
+        </div>
+        <div>
+            <label>Product ID</label>
+            <input type="number" name="ProductID">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <div>
+        <table border="2">
+            <thead>
+                <tr>
+                    <th>Ticket ID</th>
+                    <th>Problem</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>LoggedTime</th>
+                    <th>CustomerID</th>
+                    <th>Product ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for line in task2return %}
+                <tr>
+                    {% for item in line %}
+                    <td>
+                        {{item}}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <form action="/task3" method="post">
+        <h3>3. Create New Ticket Update</h3>
+        <div>
+            <label>Ticket Update ID</label>
+            <input type="number" name="TicketUpdateID">
+        </div>
+        <div>
+            <label>Message</label>
+            <input type="text" name="Message">
+        </div>
+        <div>
+            <label>Ticket ID</label>
+            <input type="number" name="TicketID">
+        </div>
+        <div>
+            <label>Staff ID</label>
+            <input type="number" name="StaffID">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+<div>
+    <h3>4. Display All Open Tickets</h3>
+</div>
+<div>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Status</th>
+                <th>Update Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for line in task4return %}
+            <tr>
+                {% for item in line %}
+                <td>
+                    {{item}}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    <form action="/task5" method="post">
+        <h3>5. Set Status of A Ticket To Closed</h3>
+        <div>
+            <label>Ticket ID</label>
+            <input type="number" name="TicketID">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+<div>
+    <form action="/task6" method="post">
+        <h3>6. List the Problem and All Updates to a Ticket</h3>
+        <div>
+            <label>Ticket ID</label>
+            <input type="number" name="TicketID">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+<div>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Problem</th>
+                <th>Ticket Update ID</th>
+                <th>Message</th>
+                <th>Update Time</th>
+                <th>Author Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for line in task6return %}
+            <tr>
+                {% for item in line %}
+                <td>
+                    {{item}}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    <h3>7. Display closed tickets, the number of updates, and the time till first and last update</h3>
+</div>
+<div>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Status</th>
+                <th>Number of Updates</th>
+                <th>Time Till First Update</th>
+                <th>Time Till Last Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for line in task7return %}
+            <tr>
+                {% for item in line %}
+                <td>
+                    {{item}}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    <form action="/task8" method="post">
+        <h3>8. Delete Customer</h3>
+        <div>
+            <label>Customer ID</label>
+            <input type="number" name="CustomerID">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
