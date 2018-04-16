@@ -48,32 +48,6 @@
             <button type="submit">Submit</button>
         </div>
     </form>
-    <div>
-        <table border="2">
-            <thead>
-                <tr>
-                    <th>Ticket ID</th>
-                    <th>Problem</th>
-                    <th>Status</th>
-                    <th>Priority</th>
-                    <th>LoggedTime</th>
-                    <th>CustomerID</th>
-                    <th>Product ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for line in task2return %}
-                <tr>
-                    {% for item in line %}
-                    <td>
-                        {{item}}
-                    </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
 </div>
 <div>
     <form action="/task3" method="post">
@@ -148,31 +122,7 @@
         </div>
     </form>
 </div>
-<div>
-    <table border="2">
-        <thead>
-            <tr>
-                <th>Ticket ID</th>
-                <th>Problem</th>
-                <th>Ticket Update ID</th>
-                <th>Message</th>
-                <th>Update Time</th>
-                <th>Author Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for line in task6return %}
-            <tr>
-                {% for item in line %}
-                <td>
-                    {{item}}
-                </td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+
 <div>
     <h3>7. Display closed tickets, the number of updates, and the time till first and last update</h3>
 </div>

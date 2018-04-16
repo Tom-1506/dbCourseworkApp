@@ -44,7 +44,7 @@ def task2():
     task2return = cursor.fetchall()
     connection.commit()
 
-    return render_template('index.html', task2return=task2return, task4return=task4(), task7return=task7())
+    return render_template('task2.html', task2return=task2return, task4return=task4(), task7return=task7())
 
 @app.route('/task3', methods=['POST'])
 def task3():
@@ -105,7 +105,7 @@ def task6():
     task6return = cursor.fetchall()
     connection.commit()
 
-    return render_template('index.html', task6return=task6return, task4return=task4(), task7return=task7())
+    return render_template('task6.html', task6return=task6return, task4return=task4(), task7return=task7())
 
 @app.route('/task7')
 def task7():

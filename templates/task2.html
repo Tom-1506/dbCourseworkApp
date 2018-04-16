@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2</title>
+</head>
+<body>
+<div>
+    <h2>Here is the ticket you have added:</h2>
+</div>
+<div>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Problem</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>LoggedTime</th>
+                <th>CustomerID</th>
+                <th>Product ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for line in task2return %}
+            <tr>
+                {% for item in line %}
+                <td>
+                    {{item}}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    <a href="/">To Homepage</a>
+</div>
+</body>
+</html>
