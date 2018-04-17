@@ -9,11 +9,7 @@ cursor = connection.cursor()
 
 @app.route('/')
 def home():
-
-    task4return = task4()
-    task7return = task7()
-
-    return render_template('index.html', task4return=task4return, task7return=task7return)
+    return render_template('index.html')
 
 @app.route('/task1', methods=["POST"])
 def task1():
@@ -27,7 +23,7 @@ def task1():
 
     connection.commit()
 
-    return render_template('index.html', task4return=task4(), task7return=task7())
+    return render_template('index.html', task1SuccessString="Query was Successful!")
 
 @app.route('/task2', methods=['POST'])
 def task2():
@@ -44,7 +40,7 @@ def task2():
     task2return = cursor.fetchall()
     connection.commit()
 
-    return render_template('task2.html', task2return=task2return, task4return=task4(), task7return=task7())
+    return render_template('task2.html', task2SuccessString="Query was Successful!", task2return=task2return)
 
 @app.route('/task3', methods=['POST'])
 def task3():
@@ -60,7 +56,7 @@ def task3():
 
     connection.commit()
 
-    return render_template('index.html', task4return=task4(), task7return=task7())
+    return render_template('index.html', tsak3SuccessString="Query was Successful!")
 
 @app.route('/task4', methods=["POST"])
 def task4():
@@ -76,17 +72,17 @@ def task4():
     task4return = cursor.fetchall()
     connection.commit()
 
-    return render_template('task4.html', task4return=task4return)
+    return render_template('task4.html', task4SuccessString="Query was Successful!", task4return=task4return)
 
 @app.route('/task5', methods=["POST"])
 def task5():
     ticketID = request.form["TicketID"]
 
-    cursor.execute("UPDATE Ticket SET Status = 'closed' WHERE TicketID = %s", [ticketID])
+    cursor.execute("UPDATE Ticket SET Status = 'closed' WHERE TicketID = %s AND Status = 'open'", [ticketID])
 
     connection.commit()
 
-    return render_template('index.html', task4return=task4(), task7return=task7())
+    return render_template('index.html', task5SuccessString="Query was Successful!")
 
 @app.route('/task6', methods=["POST"])
 def task6():
@@ -108,7 +104,7 @@ def task6():
     task6return = cursor.fetchall()
     connection.commit()
 
-    return render_template('task6.html', task6return=task6return, task4return=task4(), task7return=task7())
+    return render_template('task6.html', task6SuccessString="Query was Successful!", task6return=task6return)
 
 @app.route('/task7', methods=["POST"])
 def task7():
@@ -126,7 +122,7 @@ def task7():
     task7return = cursor.fetchall()
     connection.commit()
 
-    return render_template('task7.html', task7return=task7return)
+    return render_template('task7.html', task7SuccessString="Query was Successful!", task7return=task7return)
 
 @app.route('/task8', methods=["POST"])
 def task8():
@@ -136,7 +132,7 @@ def task8():
 
     connection.commit()
 
-    return render_template('index.html', task4return=task4(), task7return=task7())
+    return render_template('index.html', task8SuccessString="Query was Successful!")
 
 
 if __name__ == '__main__':
