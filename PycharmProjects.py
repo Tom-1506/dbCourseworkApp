@@ -9,7 +9,16 @@ cursor = connection.cursor()
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    cursor.execute("SELECT TicketID FROM Ticket ORDER BY TicketID ASC")
+
+    listOfTickets = cursor.fetchall()
+
+    cursor.execute("SELECT TicketID FROM Ticket WHERE Status = 'open' ORDER BY TicketID ASC")
+
+    listOfOpenTickets = cursor.fetchall()
+
+    return render_template('index.html', listOfTickets=listOfTickets, listOfOpenTickets=listOfOpenTickets)
+
 
 @app.route('/task1', methods=["POST"])
 def task1():
@@ -28,8 +37,8 @@ def task1():
 
         return render_template('index.html', task1FailureString=e)
 
-
     return render_template('index.html', task1SuccessString="Query was Successful!")
+
 
 @app.route('/task2', methods=['POST'])
 def task2():
@@ -53,6 +62,7 @@ def task2():
 
     return render_template('task2.html', task2SuccessString="Query was Successful!", task2return=task2return)
 
+
 @app.route('/task3', methods=['POST'])
 def task3():
     try:
@@ -73,6 +83,7 @@ def task3():
         return render_template('index.html', task3FailureString=e)
 
     return render_template('index.html', tsak3SuccessString="Query was Successful!")
+
 
 @app.route('/task4', methods=["POST"])
 def task4():
@@ -95,6 +106,7 @@ def task4():
 
     return render_template('task4.html', task4SuccessString="Query was Successful!", task4return=task4return)
 
+
 @app.route('/task5', methods=["POST"])
 def task5():
     try:
@@ -109,6 +121,7 @@ def task5():
         return render_template('index.html', task5FailureString=e)
 
     return render_template('index.html', task5SuccessString="Query was Successful!")
+
 
 @app.route('/task6', methods=["POST"])
 def task6():
@@ -137,6 +150,7 @@ def task6():
 
     return render_template('task6.html', task6SuccessString="Query was Successful!", task6return=task6return)
 
+
 @app.route('/task7', methods=["POST"])
 def task7():
     try:
@@ -159,6 +173,7 @@ def task7():
         return render_template('index.html', task7FailureString=e)
 
     return render_template('task7.html', task7SuccessString="Query was Successful!", task7return=task7return)
+
 
 @app.route('/task8', methods=["POST"])
 def task8():

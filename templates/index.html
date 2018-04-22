@@ -112,7 +112,13 @@
         <h3>5. Set Status of A Ticket To Closed</h3>
         <div>
             <label>Ticket ID</label>
-            <input type="number" name="TicketID">
+            <select name="TicketID">
+                {% for line in listOfOpenTickets %}
+                    {% for item in line %}
+                        <option>{{item}}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
         </div>
         <div>
             <button type="submit">Submit</button>
@@ -132,7 +138,13 @@
         <h3>6. List the Problem and All Updates to a Ticket</h3>
         <div>
             <label>Ticket ID</label>
-            <input type="number" name="TicketID">
+            <select name="TicketID">
+                {% for line in listOfTickets %}
+                    {% for item in line %}
+                        <option>{{item}}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
         </div>
         <div>
             <button type="submit">Submit</button>
