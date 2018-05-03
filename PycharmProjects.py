@@ -21,7 +21,10 @@ def home():
     listOfOpenTickets = cursor.fetchall() #put results of query into variable
 
     #render index.html and pass the data for the dropdown menus to html
-    return render_template('index.html', listOfTickets=listOfTickets, listOfOpenTickets=listOfOpenTickets)
+    return render_template('index.html',
+                           listOfTickets=listOfTickets,
+                           listOfOpenTickets=listOfOpenTickets
+                           )
 
 #app route for task 1
 @app.route('/task1', methods=["POST"])
@@ -37,15 +40,27 @@ def task1():
             "INSERT INTO Customer (CustomerID,Name,Email) VALUES (%s, %s, %s)",
             [customerID, customerName, customerEmail])
 
+        # re-insert data for drop down menus
+        cursor.execute("SELECT TicketID FROM Ticket ORDER BY TicketID ASC")
+        listOfTickets = cursor.fetchall()
+        cursor.execute("SELECT TicketID FROM Ticket WHERE Status = 'open' ORDER BY TicketID ASC")
+        listOfOpenTickets = cursor.fetchall()
+
         connection.commit() #commit the changes
     except psycopg2.Error as e: #catch error
         connection.rollback()
 
         #render index.html
-        return render_template('index.html', task1FailureString=e) #give a failure string to the html
+        return render_template('index.html',
+                               task1FailureString=e
+                               ) #give a failure string to the html
 
     #render index.html and pass the success string to html
-    return render_template('index.html', task1SuccessString="Query was Successful!")
+    return render_template('index.html',
+                           task1SuccessString="Query was Successful!",
+                           listOfTickets=listOfTickets,
+                           listOfOpenTickets=listOfOpenTickets
+                           )
 
 #app route for task 2
 @app.route('/task2', methods=['POST'])
@@ -64,16 +79,30 @@ def task2():
             [ticketID, problem, customerID, productID])
 
         task2return = cursor.fetchall() #put query result in variable
+
+        # re-insert data for drop down menus
+        cursor.execute("SELECT TicketID FROM Ticket ORDER BY TicketID ASC")
+        listOfTickets = cursor.fetchall()
+        cursor.execute("SELECT TicketID FROM Ticket WHERE Status = 'open' ORDER BY TicketID ASC")
+        listOfOpenTickets = cursor.fetchall()
+
         connection.commit() #commit the changes
 
     except psycopg2.Error as e: #catch error
         connection.rollback()
 
         # render index.html
-        return render_template('index.html', task2FailureString=e) #give a failure string to the html
+        return render_template('index.html',
+                               task2FailureString=e,
+                               listOfTickets=listOfTickets,
+                               listOfOpenTickets=listOfOpenTickets
+                               ) #give a failure string to the html
 
     # render task2.html and pass the success string to html, also pass data for output
-    return render_template('task2.html', task2SuccessString="Query was Successful!", task2return=task2return)
+    return render_template('task2.html',
+                           task2SuccessString="Query was Successful!",
+                           task2return=task2return
+                           )
 
 #app route for task 3
 @app.route('/task3', methods=['POST'])
@@ -91,16 +120,30 @@ def task3():
             "VALUES(%s,%s,current_timestamp,%s,%s)",
             [ticketUpdateID, message, ticketID, staffID])
 
+        # re-insert data for drop down menus
+        cursor.execute("SELECT TicketID FROM Ticket ORDER BY TicketID ASC")
+        listOfTickets = cursor.fetchall()
+        cursor.execute("SELECT TicketID FROM Ticket WHERE Status = 'open' ORDER BY TicketID ASC")
+        listOfOpenTickets = cursor.fetchall()
+
         connection.commit() #commit the changes
 
     except psycopg2.Error as e: #catch error
         connection.rollback()
 
         # render index.html
-        return render_template('index.html', task3FailureString=e) #give a failure string to the html
+        return render_template('index.html',
+                               task3FailureString=e,
+                               listOfTickets=listOfTickets,
+                               listOfOpenTickets=listOfOpenTickets
+                               ) #give a failure string to the html
 
     # render index.html and pass the success string to html
-    return render_template('index.html', tsak3SuccessString="Query was Successful!")
+    return render_template('index.html',
+                           task3SuccessString="Query was Successful!",
+                           listOfTickets=listOfTickets,
+                           listOfOpenTickets=listOfOpenTickets
+                           )
 
 #app route for task 4
 @app.route('/task4', methods=["POST"])
@@ -124,10 +167,15 @@ def task4():
         connection.rollback()
 
         # render index.html
-        return render_template('index.html', task4FailureString=e) #give a failure string to the html
+        return render_template('index.html',
+                               task4FailureString=e
+                               ) #give a failure string to the html
 
     # render task4.html and pass the success string to html, also pass data for output
-    return render_template('task4.html', task4SuccessString="Query was Successful!", task4return=task4return)
+    return render_template('task4.html',
+                           task4SuccessString="Query was Successful!",
+                           task4return=task4return
+                           )
 
 #app route for task 5
 @app.route('/task5', methods=["POST"])
@@ -139,16 +187,30 @@ def task5():
         #set the status of a ticket to closed
         cursor.execute("UPDATE Ticket SET Status = 'closed' WHERE TicketID = %s", [ticketID])
 
+        # re-insert data for drop down menus
+        cursor.execute("SELECT TicketID FROM Ticket ORDER BY TicketID ASC")
+        listOfTickets = cursor.fetchall()
+        cursor.execute("SELECT TicketID FROM Ticket WHERE Status = 'open' ORDER BY TicketID ASC")
+        listOfOpenTickets = cursor.fetchall()
+
         connection.commit() #commit the changes
 
     except psycopg2.Error as e: #catch error
         connection.rollback()
 
         # render index.html
-        return render_template('index.html', task5FailureString=e) #give a failure string to the html
+        return render_template('index.html',
+                               task5FailureString=e,
+                               listOfTickets=listOfTickets,
+                               listOfOpenTickets=listOfOpenTickets
+                               ) #give a failure string to the html
 
     # render index.html and pass the success string to html
-    return render_template('index.html', task5SuccessString="Query was Successful!")
+    return render_template('index.html',
+                           task5SuccessString="Query was Successful!",
+                           listOfTickets=listOfTickets,
+                           listOfOpenTickets=listOfOpenTickets
+                           )
 
 #app route for task 6
 @app.route('/task6', methods=["POST"])
@@ -172,16 +234,32 @@ def task6():
         ORDER BY UpdateTime ASC;""", [ticketID])
 
         task6return = cursor.fetchall() #put results in variable
+
+        # re-insert data for drop down menus
+        cursor.execute("SELECT TicketID FROM Ticket ORDER BY TicketID ASC")
+        listOfTickets = cursor.fetchall()
+        cursor.execute("SELECT TicketID FROM Ticket WHERE Status = 'open' ORDER BY TicketID ASC")
+        listOfOpenTickets = cursor.fetchall()
+
         connection.commit() #commit the changes
 
     except psycopg2.Error as e: #catch error
         connection.rollback()
 
         # render index.html
-        return render_template('index.html', task6FailureString=e) #give a failure string to the html
+        return render_template('index.html',
+                               task6FailureString=e,
+                               listOfTickets=listOfTickets,
+                               listOfOpenTickets=listOfOpenTickets
+                               ) #give a failure string to the html
 
     # render task6.html and pass the success string to html, also pass data for output
-    return render_template('task6.html', task6SuccessString="Query was Successful!", task6return=task6return)
+    return render_template('task6.html',
+                           task6SuccessString="Query was Successful!",
+                           task6return=task6return,
+                           listOfTickets=listOfTickets,
+                           listOfOpenTickets=listOfOpenTickets
+                           )
 
 #app route for task 7
 @app.route('/task7', methods=["POST"])
@@ -207,10 +285,15 @@ def task7():
         connection.rollback()
 
         # render index.html
-        return render_template('index.html', task7FailureString=e) #give a failure string to the html
+        return render_template('index.html',
+                               task7FailureString=e
+                               ) #give a failure string to the html
 
     # render task7.html and pass the success string to html, also pass data for output
-    return render_template('task7.html', task7SuccessString="Query was Successful!", task7return=task7return)
+    return render_template('task7.html',
+                           task7SuccessString="Query was Successful!",
+                           task7return=task7return
+                           )
 
 #app route for task 8
 @app.route('/task8', methods=["POST"])
@@ -222,16 +305,30 @@ def task8():
         #delete a customer
         cursor.execute("DELETE FROM Customer WHERE CustomerID = %s", [customerID])
 
+        # re-insert data for drop down menus
+        cursor.execute("SELECT TicketID FROM Ticket ORDER BY TicketID ASC")
+        listOfTickets = cursor.fetchall()
+        cursor.execute("SELECT TicketID FROM Ticket WHERE Status = 'open' ORDER BY TicketID ASC")
+        listOfOpenTickets = cursor.fetchall()
+
         connection.commit() #commit the changes
 
     except psycopg2.Error as e: #catch error
         connection.rollback()
 
         # render index.html
-        return render_template('index.html', task8FailureString=e) #give a failure string to the html
+        return render_template('index.html',
+                               task8FailureString=e,
+                               listOfTickets=listOfTickets,
+                               listOfOpenTickets=listOfOpenTickets
+                               ) #give a failure string to the html
 
     # render index.html and pass the success string to html
-    return render_template('index.html', task8SuccessString="Query was Successful!")
+    return render_template('index.html',
+                           task8SuccessString="Query was Successful!",
+                           listOfTickets=listOfTickets,
+                           listOfOpenTickets=listOfOpenTickets
+                           )
 
 
 if __name__ == '__main__':
